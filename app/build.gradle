@@ -36,6 +36,11 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    //Swipe Refresh Layout
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+    //Material Library
+    implementation 'com.google.android.material:material:1.2.1'
+    //Slider And Glide
+    implementation "com.github.firdausmaulan:GlideSlider:1.5.2"
 
 }
