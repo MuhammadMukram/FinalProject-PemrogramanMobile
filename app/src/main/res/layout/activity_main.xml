@@ -1,18 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
-    <TextView
-        android:layout_width="wrap_content"
+    <com.denzcoskun.imageslider.ImageSlider
+        android:id="@+id/carousel"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        app:iss_auto_cycle="true"
+        app:iss_period="2000"
+        app:iss_error_image="@color/purple_200"
+        android:background="@color/purple_200" />
+    <LinearLayout
+        android:id="@+id/categoryLayout"
+        android:layout_below="@id/carousel"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/newsTv"
+            android:textStyle="bold"
+            android:textColor="@color/brown_olive"
+            android:textSize="28sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="News"/>
+        <View
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_marginStart="20dp"
+            android:background="@color/green_grey_olive"
+            android:layout_height="5dp"/>
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/categoryRv"
+        android:layout_below="@id/categoryLayout"
+        android:layout_above="@id/footerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginVertical="20dp"
+        android:layout_marginHorizontal="30dp"
+        tools:listitem="@layout/item_news"/>
+    <LinearLayout
+        android:id="@+id/footerLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:background="@color/green_grey_olive"
+        >
+        <TextView
+            android:id="@+id/arnewsTv"
+            android:textStyle="bold"
+            android:textColor="@color/brown_olive"
+            android:layout_marginVertical="4dp"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Arnews ©"/>
+        <LinearLayout
+            android:id="@+id/footerItemContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/green_olive"
+            android:paddingVertical="8dp"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white_olive"
+                android:layout_marginHorizontal="5dp"
+                android:text="Contact"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white_olive"
+                android:layout_marginHorizontal="5dp"
+                android:text="About Us"/>
+        </LinearLayout>
+    </LinearLayout>
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/sidebar_view_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="sidebar">
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/sidebar_view_item"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:menu="@menu/sidebar_menu"
+            />
+    </androidx.drawerlayout.widget.DrawerLayout>
+</RelativeLayout>

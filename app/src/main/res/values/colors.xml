@@ -10,5 +10,10 @@
     <color name="orange">#FF9900</color>
     <color name="green">#009900</color>
     <color name="blue">#000099</color>
+    <color name="white_olive">#FFFCF7FF</color>
+    <color name="green_grey_olive">#FFC4CAD0</color>
+    <color name="green_olive">#FF878C8F</color>
+    <color name="brown_grey_olive">#FFA4969B</color>
+    <color name="brown_olive">#FF655560</color>
 
 </resources>

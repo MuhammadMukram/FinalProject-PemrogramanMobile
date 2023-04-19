@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/home_icn"
+        android:title="Home" />
+    <item android:title="Category">
+        <menu>
+            <group
+                android:id="@+id/categoryGroup"
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/kesehatanCategory"
+                    android:title="Kesehatan" />
+                <item
+                    android:id="@+id/olahragaCategory"
+                    android:title="olahraga" />
+                <item
+                    android:id="@+id/livestyleCategory"
+                    android:title="Lifestyle" />
+                <item
+                    android:id="@+id/politikCategory"
+                    android:title="Politik" />
+                <item
+                    android:id="@+id/ekonomiCategory"
+                    android:title="Ekonomi" />
+                <item
+                    android:id="@+id/teknologiCategory"
+                    android:title="Teknologi" />
+            </group>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/nav_login"
+        android:title="Login" />
+
+</menu>
