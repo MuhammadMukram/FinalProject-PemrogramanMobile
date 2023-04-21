@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.bumptech.glide.request.RequestOptions;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         InitiateViews();
         AddImagesToSlider();
+
         sidebar_view_container = findViewById(R.id.sidebar_view_container);
         sidebar_view_item = findViewById(R.id.sidebar_view_item);
         drawerToggle = new ActionBarDrawerToggle(this, sidebar_view_container, R.string.open, R.string.close);
@@ -97,6 +99,12 @@ public class MainActivity extends AppCompatActivity {
             defaultSliderView.image(images.get(i));
             sliderLayout.addSlider(defaultSliderView);
             defaultSliderView.setRequestOption(new RequestOptions().centerCrop());
+            int finalI = i;
+            defaultSliderView.setOnSliderClickListener(slider -> {
+                Intent intent = new Intent(MainActivity.this, NewsActivity.class);
+                startActivity(intent);
+                Toast.makeText(this, "Slider " + finalI + " Clicked", Toast.LENGTH_SHORT).show();
+            });
             /* Handling Button Click
             ........
              */
