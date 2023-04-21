@@ -11,14 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.denzcoskun.imageslider.ImageSlider
+        <com.glide.slider.library.SliderLayout
             android:id="@+id/carousel"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:background="@color/purple_200"
-            app:iss_auto_cycle="true"
-            app:iss_error_image="@color/purple_200"
-            app:iss_period="2000" />
+            app:iss_error_image="@color/purple_200" />
 
         <LinearLayout
             android:id="@+id/categoryLayout"
