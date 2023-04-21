@@ -5,12 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-    <com.denzcoskun.imageslider.ImageSlider
+    <com.glide.slider.library.SliderLayout
         android:id="@+id/carousel"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        app:iss_auto_cycle="true"
-        app:iss_period="2000"
         app:iss_error_image="@color/purple_200"
         android:background="@color/purple_200" />
     <LinearLayout
@@ -34,6 +32,7 @@
             android:layout_marginStart="20dp"
             android:background="@color/green_grey_olive"
             android:layout_height="5dp"/>
+
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/categoryRv"
@@ -84,18 +83,19 @@
                 android:text="About Us"/>
         </LinearLayout>
     </LinearLayout>
+
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/sidebar_view_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="sidebar">
+
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/sidebar_view_item"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             app:headerLayout="@layout/sidebar_header"
-            app:menu="@menu/sidebar_menu"
-            />
+            app:menu="@menu/sidebar_menu" />
     </androidx.drawerlayout.widget.DrawerLayout>
 </RelativeLayout>
