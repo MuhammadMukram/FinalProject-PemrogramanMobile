@@ -44,5 +44,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.1'
     //Slider And Glide
     implementation "com.github.firdausmaulan:GlideSlider:1.5.2"
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
 
 }

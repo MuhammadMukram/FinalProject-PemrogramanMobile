@@ -15,6 +15,7 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.bumptech.glide.request.RequestOptions;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.interfaces.ItemClickListener;
@@ -26,15 +27,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private ImageSlider carousel;
     private DrawerLayout sidebar_view_container;
     private NavigationView sidebar_view_item;
     private ActionBarDrawerToggle drawerToggle;
+    SliderLayout sliderLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        /*
         carousel = findViewById(R.id.carousel);
         List<SlideModel> slideModels = new ArrayList<>();
         slideModels.add(new SlideModel("https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/%D0%9F%D0%BE%D0%B5%D0%B7%D0%B4_%D0%BD%D0%B0_%D1%84%D0%BE%D0%BD%D0%B5_%D0%B3%D0%BE%D1%80%D1%8B_%D0%A8%D0%B0%D1%82%D1%80%D0%B8%D1%89%D0%B5._%D0%92%D0%BE%D1%80%D0%BE%D0%BD%D0%B5%D0%B6%D1%81%D0%BA%D0%B0%D1%8F_%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C.jpg/1280px-%D0%9F%D0%BE%D0%B5%D0%B7%D0%B4_%D0%BD%D0%B0_%D1%84%D0%BE%D0%BD%D0%B5_%D0%B3%D0%BE%D1%80%D1%8B_%D0%A8%D0%B0%D1%82%D1%80%D0%B8%D1%89%D0%B5._%D0%92%D0%BE%D1%80%D0%BE%D0%BD%D0%B5%D0%B6%D1%81%D0%BA%D0%B0%D1%8F_%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C.jpg", "Gambar Kereta", ScaleTypes.CENTER_CROP));
@@ -55,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        InitiateViews();
+        AddImagesToSlider();
         sidebar_view_container = findViewById(R.id.sidebar_view_container);
         sidebar_view_item = findViewById(R.id.sidebar_view_item);
         drawerToggle = new ActionBarDrawerToggle(this, sidebar_view_container, R.string.open, R.string.close);
@@ -90,9 +94,44 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
             return true;
-        });
+        });*/
+    }
+    //----------------------------------//
+    //SUCCESS 
+
+    private void InitiateViews() {
+        sliderLayout = findViewById(R.id.carousel);
+        //Add Images to test Slider
+
+    }
+    private void AddImagesToSlider(){
+        //Add images to slider using ArrayList
+        ArrayList<Integer> images = new ArrayList<>();
+        images.add(R.drawable.slider1);
+        images.add(R.drawable.slider2);
+        images.add(R.drawable.slider3);
+        //use for loop to add images to slider
+        for (int i = 0; i < images.size(); i++) {
+            DefaultSliderView defaultSliderView = new DefaultSliderView(this);
+            defaultSliderView.image(images.get(i));
+            sliderLayout.addSlider(defaultSliderView);
+            defaultSliderView.setRequestOption(new RequestOptions().centerCrop());
+            /* Handling Button Click
+            ........
+             */
+        }
+        sliderLayout.startAutoCycle();
+        sliderLayout.setPresetTransformer(SliderLayout.Transformer.Stack);
+        sliderLayout.setDuration(3000);
+
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        sliderLayout.stopAutoCycle();
     }
 
+//--------------------------------------------//
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (drawerToggle.onOptionsItemSelected(item)) {
@@ -109,4 +148,5 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
+
 }
