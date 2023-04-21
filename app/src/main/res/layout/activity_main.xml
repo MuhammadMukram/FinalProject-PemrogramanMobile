@@ -1,101 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-    <com.glide.slider.library.SliderLayout
-        android:id="@+id/carousel"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        app:iss_error_image="@color/purple_200"
-        android:background="@color/purple_200" />
-    <LinearLayout
-        android:id="@+id/categoryLayout"
-        android:layout_below="@id/carousel"
-        android:layout_width="match_parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="30dp"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/newsTv"
-            android:textStyle="bold"
-            android:textColor="@color/brown_olive"
-            android:textSize="28sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="News"/>
-        <View
-            android:layout_gravity="center"
-            android:layout_width="match_parent"
-            android:layout_marginStart="20dp"
-            android:background="@color/green_grey_olive"
-            android:layout_height="5dp"/>
+    android:id="@+id/sidebar_view_container"
+    tools:context=".Activity.MainActivity">
 
-    </LinearLayout>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/categoryRv"
-        android:layout_below="@id/categoryLayout"
-        android:layout_above="@id/footerLayout"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginVertical="20dp"
-        android:layout_marginHorizontal="30dp"
-        tools:listitem="@layout/item_news"/>
-    <LinearLayout
-        android:id="@+id/footerLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="vertical"
-        android:background="@color/green_grey_olive"
-        >
-        <TextView
-            android:id="@+id/arnewsTv"
-            android:textStyle="bold"
-            android:textColor="@color/brown_olive"
-            android:layout_marginVertical="4dp"
-            android:textSize="16sp"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Arnews ©"/>
+        android:layout_height="match_parent">
+
+        <com.denzcoskun.imageslider.ImageSlider
+            android:id="@+id/carousel"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:background="@color/purple_200"
+            app:iss_auto_cycle="true"
+            app:iss_error_image="@color/purple_200"
+            app:iss_period="2000" />
+
         <LinearLayout
-            android:id="@+id/footerItemContainer"
+            android:id="@+id/categoryLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@color/green_olive"
-            android:paddingVertical="8dp"
-            android:gravity="center">
+            android:layout_below="@id/carousel"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="20dp">
+
             <TextView
+                android:id="@+id/newsTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white_olive"
-                android:layout_marginHorizontal="5dp"
-                android:text="Contact"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white_olive"
-                android:layout_marginHorizontal="5dp"
-                android:text="About Us"/>
+                android:text="News"
+                android:textColor="@color/brown_olive"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:background="@color/green_grey_olive" />
         </LinearLayout>
-    </LinearLayout>
 
-    <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/sidebar_view_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:contentDescription="sidebar">
-
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/sidebar_view_item"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/categoryRv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="start"
-            app:headerLayout="@layout/sidebar_header"
-            app:menu="@menu/sidebar_menu" />
-    </androidx.drawerlayout.widget.DrawerLayout>
-</RelativeLayout>
+            android:layout_above="@id/footerLayout"
+            android:layout_below="@id/categoryLayout"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginVertical="20dp"
+            tools:listitem="@layout/item_news" />
+
+        <LinearLayout
+            android:id="@+id/footerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/green_grey_olive"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/arnewsTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginVertical="4dp"
+                android:text="Arnews ©"
+                android:textColor="@color/brown_olive"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/footerItemContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/green_olive"
+                android:gravity="center"
+                android:paddingVertical="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:text="Contact"
+                    android:textColor="@color/white_olive" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:text="About Us"
+                    android:textColor="@color/white_olive" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/sidebar_view_item"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/sidebar_header"
+        app:menu="@menu/sidebar_menu" />
+</androidx.drawerlayout.widget.DrawerLayout>
