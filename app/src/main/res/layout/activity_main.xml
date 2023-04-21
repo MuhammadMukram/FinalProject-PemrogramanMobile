@@ -8,7 +8,7 @@
     <com.glide.slider.library.SliderLayout
         android:id="@+id/carousel"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="240dp"
         app:iss_error_image="@color/purple_200"
         android:background="@color/purple_200" />
     <LinearLayout
