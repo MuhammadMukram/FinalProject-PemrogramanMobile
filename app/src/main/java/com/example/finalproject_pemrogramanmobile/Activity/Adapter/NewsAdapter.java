@@ -1,6 +1,7 @@
 package com.example.finalproject_pemrogramanmobile.Activity.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.finalproject_pemrogramanmobile.Activity.NewsActivity;
 import com.example.finalproject_pemrogramanmobile.Activity.model.HomepageModel;
 import com.example.finalproject_pemrogramanmobile.R;
 
@@ -89,10 +91,20 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     .load(singleNews.getImage())
                     .into(viewHolder.newsImage);
         }
+        viewHolder.itemView.setOnClickListener(v -> {
+            Intent i = new Intent(context, NewsActivity.class);
+            i.putExtra("news_title", removeHtml(singleNews.getTitle()));
+            i.putExtra("news_desc", removeHtml(singleNews.getPostContent()));
+            i.putExtra("news_image", singleNews.getImage());
+            i.putExtra("news_source", singleNews.getSource());
+            i.putExtra("news_author", singleNews.getPostAuthor());
+            i.putExtra("news_date", singleNews.getPostDate());
+            i.putExtra("news_url", singleNews.getUrl());
 
+            context.startActivity(i);
+        });
     }
-
-    //SEGMENT 1
+                //SEGMENT 1
     @Override
     public int getItemCount() {
         return news.size();

@@ -9,12 +9,19 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.finalproject_pemrogramanmobile.R;
 import com.google.android.material.navigation.NavigationView;
 
 public class NewsActivity extends AppCompatActivity {
+
+    private TextView newsTitleTv, newsContentTv, newsDateTv, writerTv;
+    private ImageView newsImageIv;
+
     private DrawerLayout sidebar_view_container;
     private NavigationView sidebar_view_item;
     private ActionBarDrawerToggle drawerToggle;
@@ -22,6 +29,21 @@ public class NewsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
+
+        initiateView();
+
+        String news_title = getIntent().getStringExtra("news_title");
+        String news_desc = getIntent().getStringExtra("news_desc");
+        String news_image = getIntent().getStringExtra("news_image");
+        String news_date = getIntent().getStringExtra("news_date");
+        String news_category = getIntent().getStringExtra("news_category");
+
+        newsTitleTv.setText(news_title);
+        newsContentTv.setText(news_desc);
+        newsDateTv.setText(news_date);
+        writerTv.setText(news_category);
+        Glide.with(this).load(news_image).into(newsImageIv);
+
 
         sidebar_view_container = findViewById(R.id.sidebar_view_container);
         sidebar_view_item = findViewById(R.id.sidebar_view_item);
@@ -59,6 +81,14 @@ public class NewsActivity extends AppCompatActivity {
             }
             return true;
         });
+    }
+
+    private void initiateView() {
+        newsTitleTv = findViewById(R.id.newsTitleTv);
+        newsContentTv = findViewById(R.id.newsContentTv);
+        newsDateTv = findViewById(R.id.newsDateTv);
+        writerTv = findViewById(R.id.writerTv);
+        newsImageIv = findViewById(R.id.newsImageIv);
     }
 
     @Override
