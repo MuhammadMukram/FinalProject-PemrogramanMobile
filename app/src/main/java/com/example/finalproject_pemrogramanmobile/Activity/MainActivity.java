@@ -120,9 +120,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void UpdateDataOnHomePage(HomepageModel body) {
-        //Adding Slider
 
-        //We need to replace localhost with emulator ip address
         for (int i = 0; i < body.getBanners().size(); i++) {
             DefaultSliderView defaultSliderView = new DefaultSliderView(this);
             defaultSliderView.setRequestOption(new RequestOptions().centerCrop());
@@ -164,7 +162,6 @@ public class MainActivity extends AppCompatActivity {
         images.add(R.drawable.slider1);
         images.add(R.drawable.slider2);
         images.add(R.drawable.slider3);
-        //use for loop to add images to slider
 
 
     }
@@ -174,7 +171,6 @@ public class MainActivity extends AppCompatActivity {
         sliderLayout.stopAutoCycle();
     }
 
-//--------------------------------------------//
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (drawerToggle.onOptionsItemSelected(item)) {

@@ -23,16 +23,14 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     int image_left = 1;
     int image_top = 2;
 
-    //Constructor
 
     public NewsAdapter(Context context, List<HomepageModel.News> news) {
         this.context = context;
         this.news = news;
     }
-    //SEGMENT 1
     @Override
     public int getItemViewType(int position){
-        //We will load 2 different layouts (MUltiple layout in recycleview)
+        // load 2 different layouts (Multiple layout in recycleview)
         if((position+1)%8 == 0 || position == 0){
             //Loading the first item & every 8 items the big layout
             return image_top;
@@ -70,7 +68,6 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
 
     }
-    //SEGMENT2
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
@@ -100,16 +97,14 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public int getItemCount() {
         return news.size();
     }
-    //Removing HTML Codes
 
 
     public static String removeHtml(String html){
-        html = html.replaceAll("<(.*?)\\>"," ");//Removes all items in brackets
-        html = html.replaceAll("<(.*?)\\\n"," ");//Must be undeneath
-        html = html.replaceFirst("(.*?)\\>", " ");//Removes any connected item to the last bracket
+        html = html.replaceAll("<(.*?)\\>"," ");
+        html = html.replaceAll("<(.*?)\\\n"," ");
+        html = html.replaceFirst("(.*?)\\>", " ");
         html = html.replaceAll("&nbsp;"," ");
         html = html.replaceAll("&amp;"," ");
         return html;
-        // Check the description and the source code if you want it
     }
 }
