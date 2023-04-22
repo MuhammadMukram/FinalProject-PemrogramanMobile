@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,19 +23,34 @@ import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.interfaces.ItemClickListener;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.example.finalproject_pemrogramanmobile.Activity.Adapter.NewsAdapter;
+import com.example.finalproject_pemrogramanmobile.Activity.model.HomepageModel;
+import com.example.finalproject_pemrogramanmobile.Activity.rest.ApiClient;
+import com.example.finalproject_pemrogramanmobile.Activity.rest.ApiInterface;
 import com.example.finalproject_pemrogramanmobile.R;
 import com.glide.slider.library.SliderLayout;
 import com.glide.slider.library.slidertypes.DefaultSliderView;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout sidebar_view_container;
     private NavigationView sidebar_view_item;
     private ActionBarDrawerToggle drawerToggle;
     SliderLayout sliderLayout;
+
+    NewsAdapter newsAdapter;
+    List<HomepageModel.News> news;
+    RecyclerView recyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
         InitiateViews();
         AddImagesToSlider();
+        getHomeData();
 
         sidebar_view_container = findViewById(R.id.sidebar_view_container);
         sidebar_view_item = findViewById(R.id.sidebar_view_item);
@@ -79,12 +97,65 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
     }
-    //----------------------------------//
-    //SUCCESS 
+
+    private void getHomeData() {
+        ApiInterface apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+        Map<String, String> params = new HashMap<>();
+        params.put("page", 1+"");
+        params.put("posts", 10+"");
+
+        Call<HomepageModel> call = apiInterface.getHomepageApi(params);
+        call.enqueue(new Callback<HomepageModel>() {
+            @Override
+            public void onResponse(Call<HomepageModel> call, Response<HomepageModel> response) {
+                UpdateDataOnHomePage(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<HomepageModel> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+    private void UpdateDataOnHomePage(HomepageModel body) {
+        //Adding Slider
+
+        //We need to replace localhost with emulator ip address
+        for (int i = 0; i < body.getBanners().size(); i++) {
+            DefaultSliderView defaultSliderView = new DefaultSliderView(this);
+            defaultSliderView.setRequestOption(new RequestOptions().centerCrop());
+            defaultSliderView.image(body.getBanners().get(i).getImage());
+            sliderLayout.addSlider(defaultSliderView);
+            int finalI = i;
+            defaultSliderView.setOnSliderClickListener(slider -> {
+                Toast.makeText(this, "Slider " + finalI + " Clicked", Toast.LENGTH_SHORT).show();
+            });
+        }
+        sliderLayout.startAutoCycle();
+        sliderLayout.setPresetTransformer(SliderLayout.Transformer.Stack);
+        sliderLayout.setDuration(3000);
+
+        for(int i = 0; i < body.getNews().size(); i++){
+            news.add(body.getNews().get(i));
+        }
+        recyclerView.setAdapter(newsAdapter);
+    }
+
+    //SUCCESS
 
     private void InitiateViews() {
         sliderLayout = findViewById(R.id.carousel);
-        //Add Images to test Slider
+
+        recyclerView = findViewById(R.id.recy_news);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setNestedScrollingEnabled(false);
+
+        news = new ArrayList<>();
+        newsAdapter = new NewsAdapter(this, news);
 
     }
     private void AddImagesToSlider(){
@@ -94,24 +165,7 @@ public class MainActivity extends AppCompatActivity {
         images.add(R.drawable.slider2);
         images.add(R.drawable.slider3);
         //use for loop to add images to slider
-        for (int i = 0; i < images.size(); i++) {
-            DefaultSliderView defaultSliderView = new DefaultSliderView(this);
-            defaultSliderView.image(images.get(i));
-            sliderLayout.addSlider(defaultSliderView);
-            defaultSliderView.setRequestOption(new RequestOptions().centerCrop());
-            int finalI = i;
-            defaultSliderView.setOnSliderClickListener(slider -> {
-                Intent intent = new Intent(MainActivity.this, NewsActivity.class);
-                startActivity(intent);
-                Toast.makeText(this, "Slider " + finalI + " Clicked", Toast.LENGTH_SHORT).show();
-            });
-            /* Handling Button Click
-            ........
-             */
-        }
-        sliderLayout.startAutoCycle();
-        sliderLayout.setPresetTransformer(SliderLayout.Transformer.Stack);
-        sliderLayout.setDuration(3000);
+
 
     }
     @Override
