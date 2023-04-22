@@ -81,6 +81,9 @@ public class HomepageModel {
         @SerializedName("pid")
         @Expose
         private Integer pid;
+        @SerializedName("post_author")
+        @Expose
+        private String postAuthor;
         @SerializedName("post_date")
         @Expose
         private String postDate;
@@ -119,15 +122,17 @@ public class HomepageModel {
          * @param image
          * @param postContent
          * @param postDate
+         * @param postAuthor
          * @param pid
          * @param source
          * @param sourceLogo
          * @param title
          * @param url
          */
-        public News(Integer pid, String postDate, String title, String url, String postContent, String source, String sourceUrl, SourceLogo sourceLogo, String image) {
+        public News(Integer pid, String postAuthor, String postDate, String title, String url, String postContent, String source, String sourceUrl, SourceLogo sourceLogo, String image) {
             super();
             this.pid = pid;
+            this.postAuthor = postAuthor;
             this.postDate = postDate;
             this.title = title;
             this.url = url;
@@ -144,6 +149,14 @@ public class HomepageModel {
 
         public void setPid(Integer pid) {
             this.pid = pid;
+        }
+
+        public String getPostAuthor() {
+            return postAuthor;
+        }
+
+        public void setPostAuthor(String postAuthor) {
+            this.postAuthor = News.this.postAuthor;
         }
 
         public String getPostDate() {

@@ -90,14 +90,14 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/newsDate"
+                    android:id="@+id/newsDateTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:text="(DD/MM/YYYY)" />
 
                 <TextView
-                    android:id="@+id/newsContentIv"
+                    android:id="@+id/newsContentTv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam aliquam nec nisl a dignissim. Maecenas faucibus tristique magna et sodales. Fusce malesuada sagittis justo, et rutrum odio sollicitudin sit amet. Nulla congue orci urna. Nullam elementum viverra aliquet. Integer eu pulvinar mauris. Donec a odio pulvinar, condimentum nisl pretium, vestibulum erat. Sed dignissim metus a metus feugiat, vitae placerat tellus consectetur. Etiam at nisi velit. Mauris sit amet tincidunt velit, quis ultrices quam.
