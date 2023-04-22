@@ -20,6 +20,17 @@ public class HomepageModel {
     @SerializedName("News")
     @Expose
     private List<News> news;
+    @SerializedName("CategoryBotton")
+    @Expose
+    private List<CategoryBotton> categoryBotton;
+
+    public List<CategoryBotton> getCategoryBotton() {
+        return categoryBotton;
+    }
+
+    public void setCategoryBotton(List<CategoryBotton> categoryBotton) {
+        this.categoryBotton = categoryBotton;
+    }
 
     /**
      * No args constructor for use in serialization
@@ -1006,6 +1017,65 @@ public class HomepageModel {
 
         public void setLink(String link) {
             this.link = link;
+        }
+
+        public String getImage() {
+            return image;
+        }
+
+        public void setImage(String image) {
+            this.image = image;
+        }
+
+    }
+    public class CategoryBotton {
+
+        @SerializedName("cid")
+        @Expose
+        private Integer cid;
+        @SerializedName("name")
+        @Expose
+        private String name;
+        @SerializedName("taxonomy")
+        @Expose
+        private Object taxonomy;
+        @SerializedName("color")
+        @Expose
+        private String color;
+        @SerializedName("image")
+        @Expose
+        private String image;
+
+        public Integer getCid() {
+            return cid;
+        }
+
+        public void setCid(Integer cid) {
+            this.cid = cid;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public Object getTaxonomy() {
+            return taxonomy;
+        }
+
+        public void setTaxonomy(Object taxonomy) {
+            this.taxonomy = taxonomy;
+        }
+
+        public String getColor() {
+            return color;
+        }
+
+        public void setColor(String color) {
+            this.color = color;
         }
 
         public String getImage() {

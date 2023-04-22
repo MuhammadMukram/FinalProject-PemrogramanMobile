@@ -1,110 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/sidebar_view_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.MainActivity">
 
-    <RelativeLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipy"
+        android:layout_marginBottom="60dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <com.glide.slider.library.SliderLayout
-            android:id="@+id/carousel"
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nested"
             android:layout_width="match_parent"
-            android:layout_height="240dp"
-            android:background="@color/purple_200"
-            app:iss_error_image="@color/purple_200" />
+            android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:id="@+id/categoryLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/carousel"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="20dp">
-
-            <TextView
-                android:id="@+id/newsTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="News"
-                android:textColor="@color/brown_olive"
-                android:textSize="28sp"
-                android:textStyle="bold" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:layout_gravity="center"
-                android:layout_marginStart="20dp"
-                android:background="@color/green_grey_olive" />
-
-        </LinearLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recy_news"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@id/footerLayout"
-            android:layout_below="@id/categoryLayout"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginVertical="20dp"
-            tools:listitem="@layout/item_news" />
-
-        <LinearLayout
-            android:id="@+id/footerLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:background="@color/green_grey_olive"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/arnewsTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginVertical="4dp"
-                android:text="Arnews ©"
-                android:textColor="@color/brown_olive"
-                android:textSize="16sp"
-                android:textStyle="bold" />
 
             <LinearLayout
-                android:id="@+id/footerItemContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@color/green_olive"
-                android:gravity="center"
-                android:paddingVertical="8dp">
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:text="Contact"
-                    android:textColor="@color/white_olive" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:text="About Us"
-                    android:textColor="@color/white_olive" />
+                <com.glide.slider.library.SliderLayout
+                    android:layout_marginBottom="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:id="@+id/carousel"/>
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <GridView
+                        android:id="@+id/grid_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:numColumns="5">
+
+                    </GridView>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recy_news"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+
+
+
             </LinearLayout>
-        </LinearLayout>
 
-    </RelativeLayout>
 
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/sidebar_view_item"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        app:headerLayout="@layout/sidebar_header"
-        app:menu="@menu/sidebar_menu" />
-</androidx.drawerlayout.widget.DrawerLayout>
+        </androidx.core.widget.NestedScrollView>
+
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/swipy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/swipy" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
