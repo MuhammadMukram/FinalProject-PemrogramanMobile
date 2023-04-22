@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.GridView;
@@ -18,6 +19,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.bumptech.glide.request.RequestOptions;
+import com.example.finalproject_pemrogramanmobile.Activity.Adapter.CategoryAdapter;
 import com.example.finalproject_pemrogramanmobile.Activity.Adapter.GridCategoryAdapter;
 import com.example.finalproject_pemrogramanmobile.Activity.Adapter.NewsAdapter;
 import com.example.finalproject_pemrogramanmobile.Activity.model.HomepageModel;
@@ -45,9 +47,9 @@ public class MainActivity extends AppCompatActivity {
 
     NewsAdapter newsAdapter;
     List<HomepageModel.News> news;
-    GridCategoryAdapter adapter;
+    CategoryAdapter categoryAdapter;
     RecyclerView recyclerView;
-    GridView gridView;
+    RecyclerView categoryGroupRv;
 
     List<HomepageModel.CategoryBotton> categoryBottons;
     int posts = 2;
@@ -78,44 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        /*
-        sidebar_view_container = findViewById(R.id.sidebar_view_container);
-        sidebar_view_item = findViewById(R.id.sidebar_view_item);
-        drawerToggle = new ActionBarDrawerToggle(this, sidebar_view_container, R.string.open, R.string.close);
 
-        sidebar_view_container.addDrawerListener(drawerToggle);
-        drawerToggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        sidebar_view_item.setNavigationItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.nav_home:
-                    Toast.makeText(this, "Home Selected", Toast.LENGTH_SHORT).show();
-                    break;
-                case R.id.kesehatanCategory:
-                    Toast.makeText(this, "Kesehatan Selected", Toast.LENGTH_SHORT).show();
-                    break;
-                case R.id.olahragaCategory:
-                    Toast.makeText(this, "Olahraga Selected", Toast.LENGTH_SHORT).show();
-                    break;
-                case R.id.livestyleCategory:
-                    Toast.makeText(this, "Lifestyle Selected", Toast.LENGTH_SHORT).show();
-                    break;
-                case R.id.politikCategory:
-                    Toast.makeText(this, "Politik Selected", Toast.LENGTH_SHORT).show();
-                    break;
-                case R.id.ekonomiCategory:
-                    Toast.makeText(this, "Ekonomi Selected", Toast.LENGTH_SHORT).show();
-                    break;
-                case R.id.teknologiCategory:
-                    Toast.makeText(this, "Teknologi Selected", Toast.LENGTH_SHORT).show();
-                    break;
-                case R.id.nav_login:
-                    Toast.makeText(this, "Login Selected", Toast.LENGTH_SHORT).show();
-                    break;
-            }
-            return true;
-        });
-         */
     }
 
     private void getHomeData() {
@@ -165,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
         categoryBottons.addAll(body.getCategoryBotton());
         if(isFromStart){
             recyclerView.setAdapter(newsAdapter);
-            gridView.setAdapter(adapter);
+            categoryGroupRv.setAdapter(categoryAdapter);
         }else{
             newsAdapter.notifyItemRangeInserted(beforeNewsSize, body.getNews().size());
         }
@@ -175,8 +140,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void InitiateViews() {
         categoryBottons = new ArrayList<>();
-        adapter = new GridCategoryAdapter(this, categoryBottons);
-        gridView = findViewById(R.id.grid_view);
+        categoryAdapter = new CategoryAdapter(categoryBottons);
+        categoryGroupRv = findViewById(R.id.categoryGroupRv);
+        categoryGroupRv.setHasFixedSize(true);
+        categoryGroupRv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
         sliderLayout = findViewById(R.id.carousel);
         recyclerView = findViewById(R.id.recy_news);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -196,8 +164,6 @@ public class MainActivity extends AppCompatActivity {
         images.add(R.drawable.slider1);
         images.add(R.drawable.slider2);
         images.add(R.drawable.slider3);
-
-
     }
     @Override
     protected void onStop() {

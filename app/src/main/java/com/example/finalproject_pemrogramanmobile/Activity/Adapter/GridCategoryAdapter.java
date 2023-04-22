@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -57,16 +58,11 @@ public class GridCategoryAdapter extends BaseAdapter {
        holdery.textView.setText(categoryBottons.get(i).getName());
        Glide.with(context)
                .load(categoryBottons.get(i).getImage()).into(holdery.circleImageView);
-
-       if(categoryBottons.get(i).getColor() != null){
-           holdery.circleImageView.setCircleBackgroundColor(Color.parseColor(categoryBottons.get(i).getColor()));
-           holdery.circleImageView.setBorderColor(Color.parseColor(categoryBottons.get(i).getColor()));
-       }
        return view;
     }
 
     static class ViewHoldery{
-        CircleImageView circleImageView;
+        ImageView circleImageView;
         TextView textView;
     }
 }
