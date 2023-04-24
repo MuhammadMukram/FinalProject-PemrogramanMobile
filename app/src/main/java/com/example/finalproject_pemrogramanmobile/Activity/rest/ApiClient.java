@@ -1,6 +1,15 @@
 package com.example.finalproject_pemrogramanmobile.Activity.rest;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.security.SecureRandom;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -8,8 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient extends AppCompatActivity{
     //10.0.2.2 default host for AVM
-    public static final String BASE_URL ="http://10.0.2.2/wordpress/wp-json/api/";
-
+    public static final String BASE_URL ="https://unhassisfonews.xyz/wp-json/api/";
 
 
 
