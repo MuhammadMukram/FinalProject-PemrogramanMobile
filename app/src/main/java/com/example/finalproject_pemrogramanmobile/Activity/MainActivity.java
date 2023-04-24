@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView categoryGroupRv;
 
     List<HomepageModel.CategoryBotton> categoryBottons;
-    int posts = 2;
+    int posts = 3;
     int page = 1;
     boolean isFromStart = true;
     ProgressBar progressBar;
@@ -159,11 +159,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
     private void AddImagesToSlider(){
-        //Add images to slider using ArrayList
-        ArrayList<Integer> images = new ArrayList<>();
-        images.add(R.drawable.slider1);
-        images.add(R.drawable.slider2);
-        images.add(R.drawable.slider3);
     }
     @Override
     protected void onStop() {
